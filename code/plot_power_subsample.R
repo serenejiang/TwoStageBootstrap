@@ -41,12 +41,6 @@ plot.power.subsample = function(N.x, N.y, n.x, n.y, B, m, alpha.qs, mean.x, mean
 		pwr.Peddada = NULL
 
 		for (i in n.x){
-			# results.H0 = stat.H0(group.x = dat$X, group.y = dat$Y, subsample.x = i, subsample.y = i, numboot = B, alpha = alpha.qs)
-			# T.H0 = results.H0$T.stat.H0
-			# cutoff.high = results.H0$cutoff.high
-			# cutoff.low = results.H0$cutoff.low
-
-			# T.H1 = stat.H1(group.x = dat$X, group.y = dat$Y, subsample.x = i, subsample.y = i, numboot = B)
 			pwr.TwoStageBootstrap = cbind(pwr.TwoStageBootstrap, power.TwoStageBootstrap(group.x = dat$X, group.y = dat$Y,
 												  subsample.x=i, subsample.y=i, numboot1=B, numboot2=B, alpha.qs=alpha.qs))
 			pwr.Kleinman = cbind(pwr.Kleinman, power.Kleinman(test=stat.test, group.x = dat$X, group.y = dat$Y, 
@@ -86,12 +80,6 @@ plot.power.subsample = function(N.x, N.y, n.x, n.y, B, m, alpha.qs, mean.x, mean
 	Q95.Kleinman = apply(pwr.Kleinman, MARGIN=2, FUN=quantile, probs=0.95)
 	Q95.Colantuoni = apply(pwr.Colantuoni, MARGIN=2, FUN=quantile, probs=0.95)
 	Q95.Peddada = apply(pwr.Peddada, MARGIN=2, FUN=quantile, probs=0.95)
-
-	# ### store results
-	# results = list(power.normal=pwr.normal, effect.size=eff.size,
-	# 	power.TwoStageBootstrap.mean=mean.TwoStageBootstrap, power.TwoStageBootstrap.sd=sd.TwoStageBootstrap,
-	# 	power.Kleinman.mean=mean.Kleinman, power.Kleinman.sd=sd.Kleinman, power.Colantuoni.mean=mean.Colantuoni,
-	# 	power.Colantuoni.sd=sd.Colantuoni, power.Peddada.mean=mean.Peddada, power.Peddada.sd=sd.Peddada)
 
 	### export figures
 	figure_name = paste(paste(dist.x, dist.y, N.x, N.y, sep='_'), 'pdf', sep='.')

@@ -25,7 +25,6 @@ power.t = function(mu.x, mu.y, sigma.x, sigma.y, size.x, size.y, alpha.qs){
 	critical.high= qt(p=1-alpha.qs/2, df=df)
 	critical.low= qt(p=alpha.qs/2, df=df)
 	pwr = pt(q=critical.high, df=df, ncp=lambda, lower.tail=FALSE) + pt(q=critical.low, df=df, ncp=lambda, lower.tail=TRUE)
-	#pwr = pt(q=qt(p=1-alpha.qs, df=df), df=df, ncp=lambda, lower.tail = FALSE, log.p = FALSE)
 	return(pwr)
 }
 
